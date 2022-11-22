@@ -62,14 +62,14 @@ Trigger trigger = TriggerBuilder.newTrigger()
                                             .repeatForever()
                                         ).build(); 
 ```
-After created the trigger, we have to create the job that will be instantiated based on the JobImpl that we have created:
+After trigger has been created, we have to create the **job** that will be instantiated based on the *JobImpl* class:
 ```
 JobDetail jobImpl = JobBuilder.newJob(JobImpl.class)
                                         .withIdentity("JOB-IMPL", "GROUP")
                                         .withDescription("JOB RUNNING EACH 2 SECONDS")
                                         .build();
 ```
-With the job and the trigger created, now we have to create a Scheduler that is going to receive the job and the trigger that we set before:
+With a **trigger** and a **job** set, now we have to create a *Scheduler* that is going to receive the job and the trigger that we set before:
 ```
 Scheduler scheduler = new StdSchedulerFactory().getScheduler();
 scheduler.start();
@@ -81,7 +81,7 @@ The final result of the running app is shown below:
 
 ![image](https://user-images.githubusercontent.com/39681960/203430963-f112afd7-7943-4ec4-a2e9-e74863e920e0.png)
 
-> See that *JobImpl* object is running in an interval of 2 seconds. So, you could change the overrided *execute* method of JobImpl class to see something interesting running there.
+> See that *JobImpl* object is running in an interval of 2 seconds. So, you could change the overrided *execute* method of *JobImpl* class to see something interesting running there.
 
 **P.S: Replacing the SimpleScheduleBuilder by a CronScheduleBuilder**
 - If we want to use the UNIX pattern of scheduling, we have to replace the *SimpleScheduleBuilder* by a *CronScheduleBuilder* :
